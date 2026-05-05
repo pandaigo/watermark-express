@@ -1,0 +1,79 @@
+==============================
+ストア説明文（Description）
+==============================
+
+Add text & logo watermarks to your images instantly. Perfect for e-commerce sellers, content creators, and photographers who need to protect their product photos.
+
+Features:
+- Text watermarks with custom font, color, size, and opacity
+- Logo watermarks (PNG) for brand consistency (Pro)
+- 9 position options + diagonal tiled repeat
+- Real-time preview before downloading
+- Bulk processing — watermark multiple images at once
+- Download all as ZIP (Pro)
+- Save watermark templates for reuse (Pro)
+- JPEG quality control
+- 100% local — your images never leave your device
+
+Free: 10 images/day, text watermark only
+Pro ($7.99 one-time): Unlimited images, logo watermarks, ZIP download, templates
+
+
+==============================
+ホームページURL
+==============================
+https://pandaigo.github.io/watermark-express/
+
+==============================
+サポートURL（メールで対応するならプライバシーポリシーURLでOK）
+==============================
+https://pandaigo.github.io/watermark-express/store/privacy-policy.html
+
+==============================
+単一用途の説明
+==============================
+This extension has a single purpose: to add text or logo watermarks to images locally in the browser, with no external server processing.
+
+==============================
+storage が必要な理由
+==============================
+Required to save the user's watermark settings, templates, logo image, and payment status locally on the device using chrome.storage.local. No data is sent to any external server.
+
+==============================
+ホスト権限が必要な理由（content_scripts の matches）
+==============================
+https://extensionpay.com/*:
+Required by ExtensionPay (the payment provider) to detect when a payment is completed. The ExtPay.js content script runs on the ExtensionPay checkout page to communicate payment status back to the extension.
+
+==============================
+リモートコードを使用しているか
+==============================
+No. This extension does not use any remotely hosted code. All scripts are bundled within the extension package.
+
+==============================
+ユーザーデータの収集について
+==============================
+以下すべてチェックなし（収集しない）:
+- [ ] 個人を特定できる情報
+- [ ] 健康に関する情報
+- [ ] 財務状況や支払いに関する情報
+- [ ] 認証に関する情報
+- [ ] 個人的コミュニケーション
+- [ ] 位置情報
+- [ ] ウェブ履歴
+- [ ] ユーザーのアクティビティ
+- [ ] ウェブサイトのコンテンツ
+
+補足: All data is stored locally on the user's device using chrome.storage.local. No analytics, tracking, or telemetry is included. No user accounts are required. The only external communication is with ExtensionPay (extensionpay.com) to process one-time payments and verify purchase status.
+
+==============================
+開示の表明（すべてチェックを入れる）
+==============================
+- [x] 私は以下の開示が正しいものであることを表明します。私は、承認されている以外の用途で第三者にユーザーデータを販売、転送しません
+- [x] 私はアイテムの唯一の目的と関係のない目的でユーザーデータを使用または転送しません
+- [x] 私は信用力を判断する目的または融資目的でユーザーデータを使用または転送しません
+
+==============================
+プライバシーポリシーのURL
+==============================
+https://pandaigo.github.io/watermark-express/store/privacy-policy.html

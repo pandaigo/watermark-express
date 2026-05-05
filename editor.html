@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watermark Express</title>
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+
+<header id="header">
+  <div class="header-left">
+    <img src="icons/icon48.png" alt="" class="header-icon">
+    <h1>Watermark Express</h1>
+  </div>
+  <div class="header-right">
+    <span id="image-count"></span>
+    <span id="plan-badge" class="badge badge-free">FREE</span>
+    <button id="btn-upgrade-header" class="btn btn-upgrade" hidden>Upgrade — $7.99</button>
+  </div>
+</header>
+
+<main id="main">
+  <aside id="sidebar">
+
+    <div id="drop-zone" class="drop-zone">
+      <div class="drop-zone-content">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <p>Drop images here</p>
+        <p class="drop-zone-hint">or click to browse</p>
+      </div>
+      <input type="file" id="file-input" multiple accept="image/*" hidden>
+    </div>
+
+    <div id="settings-panel" class="panel" hidden>
+      <h2 class="panel-title">Watermark Settings</h2>
+
+      <div class="setting-group">
+        <label class="setting-label">Type</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-type="text">Text</button>
+          <button class="toggle-btn" data-type="logo">
+            Logo <span class="pro-tag" hidden>PRO</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="text-settings">
+        <div class="setting-group">
+          <label class="setting-label" for="wm-text">Text</label>
+          <input type="text" id="wm-text" class="input" value="Sample Watermark" placeholder="Enter watermark text">
+        </div>
+
+        <div class="setting-group">
+          <label class="setting-label" for="wm-font">Font</label>
+          <select id="wm-font" class="input">
+            <option value="Arial" selected>Arial</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Impact">Impact</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+          </select>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-group setting-half">
+            <label class="setting-label" for="wm-color">Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="wm-color" value="#ffffff">
+              <span id="wm-color-hex">#ffffff</span>
+            </div>
+          </div>
+          <div class="setting-group setting-half">
+            <label class="setting-label" for="wm-size">Size <span id="wm-size-val">5%</span></label>
+            <input type="range" id="wm-size" min="1" max="20" value="5" class="slider">
+          </div>
+        </div>
+      </div>
+
+      <div id="logo-settings" hidden>
+        <div class="setting-group">
+          <label class="setting-label">Logo Image</label>
+          <div id="logo-drop-zone" class="logo-drop-zone">
+            <span id="logo-placeholder">Click to upload logo (PNG recommended)</span>
+            <img id="logo-preview-img" hidden>
+            <input type="file" id="logo-input" accept="image/png,image/svg+xml,image/webp" hidden>
+          </div>
+          <p id="logo-warning" class="warning-text" hidden>Please upload a logo image first</p>
+        </div>
+        <div class="setting-group">
+          <label class="setting-label" for="logo-size">Logo Size <span id="logo-size-val">15%</span></label>
+          <input type="range" id="logo-size" min="5" max="50" value="15" class="slider">
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <label class="setting-label" for="wm-opacity">Opacity <span id="wm-opacity-val">40%</span></label>
+        <input type="range" id="wm-opacity" min="5" max="100" value="40" class="slider">
+      </div>
+
+      <div class="setting-group">
+        <label class="setting-label">Position</label>
+        <div class="position-grid">
+          <button class="pos-btn" data-pos="top-left" title="Top Left">&#8598;</button>
+          <button class="pos-btn" data-pos="top-center" title="Top Center">&#8593;</button>
+          <button class="pos-btn" data-pos="top-right" title="Top Right">&#8599;</button>
+          <button class="pos-btn" data-pos="middle-left" title="Middle Left">&#8592;</button>
+          <button class="pos-btn active" data-pos="center" title="Center">&#9679;</button>
+          <button class="pos-btn" data-pos="middle-right" title="Middle Right">&#8594;</button>
+          <button class="pos-btn" data-pos="bottom-left" title="Bottom Left">&#8601;</button>
+          <button class="pos-btn" data-pos="bottom-center" title="Bottom Center">&#8595;</button>
+          <button class="pos-btn" data-pos="bottom-right" title="Bottom Right">&#8600;</button>
+        </div>
+        <button class="btn btn-tiled" id="btn-tiled" data-pos="tiled">Tiled (diagonal repeat)</button>
+      </div>
+
+      <div class="setting-group">
+        <label class="setting-label" for="wm-quality">JPEG Quality <span id="wm-quality-val">92%</span></label>
+        <input type="range" id="wm-quality" min="60" max="100" value="92" class="slider">
+      </div>
+
+      <hr class="divider">
+
+      <div class="setting-group">
+        <label class="setting-label">Templates <span class="pro-tag" id="template-pro-tag" hidden>PRO</span></label>
+        <div class="template-actions">
+          <select id="template-select" class="input template-select">
+            <option value="">— Select template —</option>
+          </select>
+          <button id="btn-save-template" class="btn btn-sm" title="Save current settings">Save</button>
+          <button id="btn-delete-template" class="btn btn-sm btn-danger" title="Delete selected template">Del</button>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="action-buttons">
+        <button id="btn-download-current" class="btn btn-primary btn-block">
+          <span class="btn-text">Download Current</span>
+        </button>
+        <button id="btn-download-all" class="btn btn-accent btn-block">
+          <span class="btn-text">Download All</span>
+        </button>
+      </div>
+
+      <div id="daily-limit-info" class="limit-info">
+        <span id="limit-text"></span>
+      </div>
+    </div>
+
+  </aside>
+
+  <section id="preview-area" data-drop-target>
+    <div id="empty-state" class="empty-state">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <p>Drop your product photos here to add a watermark in seconds</p>
+    </div>
+    <div id="preview-container" hidden>
+      <canvas id="preview-canvas"></canvas>
+    </div>
+    <div id="thumbnail-strip" hidden></div>
+  </section>
+</main>
+
+<div id="upgrade-modal" class="modal-overlay" hidden>
+  <div class="modal">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <h2>Upgrade to Pro</h2>
+    <p class="modal-subtitle">One-time purchase. No subscription.</p>
+    <ul class="feature-list">
+      <li>Unlimited images per day</li>
+      <li>Download all as ZIP</li>
+      <li>Logo watermark support</li>
+      <li>Save watermark templates</li>
+    </ul>
+    <button id="btn-upgrade" class="btn btn-upgrade btn-block btn-lg">
+      Upgrade — $7.99 (one-time)
+    </button>
+    <p class="modal-hint">Secure payment via Stripe</p>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="jszip.min.js"></script>
+<script src="ExtPay.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>
