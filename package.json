@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "zip": "node scripts/zip.mjs",
-    "icons": "node scripts/gen-icons.mjs"
+    "icons": "node scripts/gen-icons.mjs",
+    "store-assets": "node scripts/gen-store-assets.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.5"
